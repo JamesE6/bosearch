@@ -4,6 +4,20 @@ import streamlit as st
 import pandas as pd
 import requests, uuid, json
 
+if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
+
+if not st.session_state.authenticated:
+    st.title("Tibetan Corpus Search")
+    password = st.text_input("Enter access code:", type="password")
+    if st.button("Continue"):
+        if password == st.secrets["ACCESS_CODE"]:
+            st.session_state.authenticated = True
+            st.rerun()
+        else:
+            st.error("Incorrect code.")
+    st.stop()
+
 # Add your key and endpoint
 co = cohere.Client(st.secrets['COHERE_API_KEY'])
 pinecone_API_key = st.secrets['PINECONE_API_KEY']
