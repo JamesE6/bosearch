@@ -5,9 +5,9 @@ import pandas as pd
 import requests, uuid, json
 
 # Add your key and endpoint
-co = cohere.Client('COHERE_API_KEY')
-pinecone_API_key = 'PINECONE_API_KEY'
-azure_API_key = "AZURE_API_KEY"
+co = cohere.Client(st.secrets['COHERE_API_KEY'])
+pinecone_API_key = st.secrets['PINECONE_API_KEY']
+azure_API_key = st.secrets["AZURE_API_KEY"]
 endpoint = "https://api.cognitive.microsofttranslator.com"
 
 # location, also known as region.
